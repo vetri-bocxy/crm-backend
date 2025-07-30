@@ -4,6 +4,7 @@ import com.bocxy.crm.createDTO.ContactCardCreateDto;
 import com.bocxy.crm.dto.ContactCardDto;
 import com.bocxy.crm.mapper.ContactCardMapper;
 import com.bocxy.crm.service.ContactCardService;
+import com.bocxy.crm.updateDTO.ContactCardUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class ContactCardApiService {
     ContactCardMapper contactCardMapper;
 
     public ContactCardDto create(ContactCardCreateDto createDto) {
-        return contactCardMapper.toDto(contactCardService.create(contactCardMapper.toEntity(createDto)));
+        return contactCardMapper.toDto(contactCardService.createOrUpdate(contactCardMapper.toEntity(createDto)));
     }
 
     public List<ContactCardDto> getAll() {
@@ -27,5 +28,9 @@ public class ContactCardApiService {
 
     public ContactCardDto getById(UUID id) {
         return contactCardMapper.toDto(contactCardService.getById(id));
+    }
+
+    public ContactCardDto update(ContactCardUpdateDto dto) {
+        return contactCardMapper.toDto(contactCardService.createOrUpdate(contactCardMapper.toEntity(dto)));
     }
 }

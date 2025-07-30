@@ -14,7 +14,7 @@ public class ContactCardService {
     @Autowired
     ContactCardRepository contactCardRepository;
 
-    public ContactCard create(ContactCard entity) {
+    public ContactCard createOrUpdate(ContactCard entity) {
         return contactCardRepository.save(entity);
     }
 
