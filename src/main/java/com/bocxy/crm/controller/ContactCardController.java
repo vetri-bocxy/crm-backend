@@ -43,7 +43,7 @@ public class ContactCardController {
     public ResponseEntity<ResponseDto> getAll(){
         try{
             List<ContactCardDto> dtoList=contactCardApiService.getAll();
-            return ResponseEntity.ok(new ResponseDto(200,"Created Successfully",dtoList));
+            return ResponseEntity.ok(new ResponseDto(200,"Retrieved Successfully",dtoList));
         }catch (IllegalArgumentException e) {
             // Return 400 for bad request errors like invalid input
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -63,7 +63,7 @@ public class ContactCardController {
     public ResponseEntity<ResponseDto> getById(@RequestParam UUID id){
         try{
             ContactCardDto dto=contactCardApiService.getById(id);
-            return ResponseEntity.ok(new ResponseDto(200,"Created Successfully",dto));
+            return ResponseEntity.ok(new ResponseDto(200,"Retrieved Successfully",dto));
         }catch (IllegalArgumentException e) {
             // Return 400 for bad request errors like invalid input
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

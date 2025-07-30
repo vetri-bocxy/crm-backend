@@ -10,15 +10,22 @@ import org.springframework.stereotype.Component;
 public class ContactCardMapper {
     public ContactCard toEntity(ContactCardCreateDto dto) {
         ContactCard entity=new ContactCard();
-        entity.setClinicName(dto.getClinicName());
-        entity.setDoctorName(dto.getDoctorName());
+        entity.setBrandName(dto.getBrandName());
         entity.setOwnerName(dto.getOwnerName());
-        entity.setAppointmentDate(dto.getAppointmentDate());
-        entity.setAppointmentTime(dto.getAppointmentTime());
-        entity.setReferenceFrom(dto.getReferenceFrom());
+        entity.setSpeciality(dto.getSpeciality());
         entity.setBusinessType(dto.getBusinessType());
-        entity.setMobileNo(dto.getMobileNo());
+        entity.setPointOfContact(dto.getPointOfContact());
+        entity.setPrimaryContactNumber(dto.getPrimaryContactNumber());
+        entity.setSecondaryContactNumber(dto.getSecondaryContactNumber());
+        entity.setLeadStatus(dto.getLeadStatus());
+        entity.setAppointmentStartDate(dto.getAppointmentStartDate());
+        entity.setAppointmentEndDate(dto.getAppointmentEndDate());
+        entity.setAppointmentTime(dto.getAppointmentTime());
+        entity.setReferralSource(dto.getReferralSource());
         entity.setEmail(dto.getEmail());
+        entity.setAddress(dto.getAddress());
+        entity.setCity(dto.getCity());
+        entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
         return entity;
     }
@@ -26,15 +33,22 @@ public class ContactCardMapper {
     public ContactCard toEntity(ContactCardUpdateDto dto) {
         ContactCard entity=new ContactCard();
         entity.setId(dto.getId());
-        entity.setClinicName(dto.getClinicName());
-        entity.setDoctorName(dto.getDoctorName());
+        entity.setBrandName(dto.getBrandName());
         entity.setOwnerName(dto.getOwnerName());
-        entity.setAppointmentDate(dto.getAppointmentDate());
-        entity.setAppointmentTime(dto.getAppointmentTime());
-        entity.setReferenceFrom(dto.getReferenceFrom());
+        entity.setSpeciality(dto.getSpeciality());
         entity.setBusinessType(dto.getBusinessType());
-        entity.setMobileNo(dto.getMobileNo());
+        entity.setPointOfContact(dto.getPointOfContact());
+        entity.setPrimaryContactNumber(dto.getPrimaryContactNumber());
+        entity.setSecondaryContactNumber(dto.getSecondaryContactNumber());
+        entity.setLeadStatus(dto.getLeadStatus());
+        entity.setAppointmentStartDate(dto.getAppointmentStartDate());
+        entity.setAppointmentEndDate(dto.getAppointmentEndDate());
+        entity.setAppointmentTime(dto.getAppointmentTime());
+        entity.setReferralSource(dto.getReferralSource());
         entity.setEmail(dto.getEmail());
+        entity.setAddress(dto.getAddress());
+        entity.setCity(dto.getCity());
+        entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
         return entity;
     }
@@ -42,17 +56,23 @@ public class ContactCardMapper {
     public ContactCardDto toDto(ContactCard entity) {
         ContactCardDto dto=new ContactCardDto();
         dto.setId(entity.getId());
-        dto.setClinicName(entity.getClinicName());
-        dto.setDoctorName(entity.getDoctorName());
+        dto.setBrandName(entity.getBrandName());
         dto.setOwnerName(entity.getOwnerName());
-        dto.setAppointmentDate(entity.getAppointmentDate());
-        dto.setAppointmentTime(entity.getAppointmentTime());
-        dto.setReferenceFrom(entity.getReferenceFrom());
+        dto.setSpeciality(entity.getSpeciality());
         dto.setBusinessType(entity.getBusinessType());
-        dto.setMobileNo(entity.getMobileNo());
+        dto.setPointOfContact(entity.getPointOfContact());
+        dto.setPrimaryContactNumber(entity.getPrimaryContactNumber());
+        dto.setSecondaryContactNumber(entity.getSecondaryContactNumber());
+        dto.setLeadStatus(entity.getLeadStatus());
+        dto.setAppointmentStartDate(entity.getAppointmentStartDate());
+        dto.setAppointmentEndDate(entity.getAppointmentEndDate());
+        dto.setAppointmentTime(entity.getAppointmentTime());
+        dto.setReferralSource(entity.getReferralSource());
         dto.setEmail(entity.getEmail());
+        dto.setAddress(entity.getAddress());
+        dto.setCity(entity.getCity());
+        dto.setPinCode(entity.getPinCode());
         dto.setFileUpload(entity.getFileUpload());
-
         return dto;
     }
 }
