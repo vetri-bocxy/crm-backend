@@ -8,6 +8,8 @@ import org.hibernate.annotations.JdbcTypeCode;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,6 +23,7 @@ public class ContactCard {
     @Column(name = "id", updatable = false, nullable = false, length = 36)
     private UUID id;
 
+    @Column(nullable = false,unique = true)
     private String brandName;//identity name
     private String ownerName;//primary name
     private String speciality;
@@ -47,4 +50,11 @@ public class ContactCard {
     private String city;
     private String pinCode;
     private String fileUpload;
+    private String createdUser;
+
+    @OneToMany(mappedBy = "contactCard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Task> taskList = new ArrayList<>();
+
+
+
 }

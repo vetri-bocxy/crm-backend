@@ -17,7 +17,7 @@ public class User {
     @JdbcTypeCode(java.sql.Types.VARCHAR)
     @Column(name = "id", updatable = false, nullable = false, unique = true,length = 36)
     private UUID id;
-    
+
     @Column(unique = true,nullable = false)
     private String username;
     private String password;

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -43,4 +44,7 @@ public class ContactCardDto {//response dto
     private String city;
     private String pinCode;
     private String fileUpload;
+    private String createdUser;
+
+    private List<TaskDTO> taskDTOList;
 }

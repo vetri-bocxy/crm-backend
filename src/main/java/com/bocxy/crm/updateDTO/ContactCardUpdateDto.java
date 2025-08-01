@@ -1,5 +1,6 @@
 package com.bocxy.crm.updateDTO;
 
+import com.bocxy.crm.createDTO.TaskCreateDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -45,6 +47,9 @@ public class ContactCardUpdateDto {
     private String city;
     private String pinCode;
     private String fileUpload;
+    private String createdUser;
+
+    private List<TaskUpdateDTO> taskUpdateDTOList;
 
 //    @JsonFormat(pattern = "dd-MM-yyyy")
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")

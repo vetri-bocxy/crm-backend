@@ -4,10 +4,14 @@ import com.bocxy.crm.createDTO.ContactCardCreateDto;
 import com.bocxy.crm.dto.ContactCardDto;
 import com.bocxy.crm.entity.ContactCard;
 import com.bocxy.crm.updateDTO.ContactCardUpdateDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ContactCardMapper {
+    @Autowired
+    TaskMapper taskMapper;
+
     public ContactCard toEntity(ContactCardCreateDto dto) {
         ContactCard entity=new ContactCard();
         entity.setBrandName(dto.getBrandName());
@@ -27,6 +31,8 @@ public class ContactCardMapper {
         entity.setCity(dto.getCity());
         entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
+        entity.setCreatedUser(dto.getCreatedUser());
+        entity.setTaskList(dto.getTaskCreateDTOList().stream().map(taskMapper::toEntity).toList());
         return entity;
     }
 
@@ -50,6 +56,9 @@ public class ContactCardMapper {
         entity.setCity(dto.getCity());
         entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
+        entity.setCreatedUser(dto.getCreatedUser());
+        entity.setTaskList(dto.getTaskUpdateDTOList()
+                .stream().map(taskMapper::toEntity).toList());
         return entity;
     }
 
@@ -73,6 +82,8 @@ public class ContactCardMapper {
         dto.setCity(entity.getCity());
         dto.setPinCode(entity.getPinCode());
         dto.setFileUpload(entity.getFileUpload());
+        dto.setCreatedUser(entity.getCreatedUser());
+        dto.setTaskDTOList(entity.getTaskList().stream().map(taskMapper::toDto).toList());
         return dto;
     }
 }

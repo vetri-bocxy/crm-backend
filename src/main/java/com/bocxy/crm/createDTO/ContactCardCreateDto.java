@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 public class ContactCardCreateDto {
@@ -44,5 +45,8 @@ public class ContactCardCreateDto {
     private String city;
     private String pinCode;
     private String fileUpload;
+    private String createdUser;
+
+    private List<TaskCreateDTO> taskCreateDTOList;
 
 }
