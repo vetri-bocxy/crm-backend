@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -52,7 +53,8 @@ public class ContactCard {
     private String fileUpload;
     private String createdUser;
 
-    @OneToMany(mappedBy = "contactCard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "contact_card_id")
     private List<Task> taskList = new ArrayList<>();
 
 

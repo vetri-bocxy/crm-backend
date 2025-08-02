@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Types;
 import java.time.LocalDate;
@@ -24,16 +25,14 @@ public class Task {
     @Column(nullable = false,unique = true)
     private String brandName;
     private LocalDate appointmentDate;
+    @DateTimeFormat(pattern = "hh:mm a")
     private LocalTime appointmentTime;
     private String action;
     private String comments;
     private LocalDate nextAppointmentDate;
+    @DateTimeFormat(pattern = "hh:mm a")
     private LocalTime nextAppointmentTime;
     private String leadStatus;
     private String taskStatus;
-
-    @ManyToOne
-    @JoinColumn(name = "contact_card_id")
-    private ContactCard contactCard;
 
 }

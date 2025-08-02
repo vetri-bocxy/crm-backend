@@ -16,10 +16,6 @@ public class TaskCreateDTO {
     private LocalTime appointmentTime;
     private String action;
     private String comments;
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate nextAppointmentDate;
-    @JsonFormat(pattern = "HH:mm")
-    private LocalTime nextAppointmentTime;
     private String leadStatus;
     private String taskStatus;
 

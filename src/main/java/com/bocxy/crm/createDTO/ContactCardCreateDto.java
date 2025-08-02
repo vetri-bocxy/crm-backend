@@ -47,6 +47,6 @@ public class ContactCardCreateDto {
     private String fileUpload;
     private String createdUser;
 
-    private List<TaskCreateDTO> taskCreateDTOList;
+    private TaskCreateDTO taskCreateDTO;
 
 }

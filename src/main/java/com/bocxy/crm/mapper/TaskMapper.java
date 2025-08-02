@@ -1,14 +1,20 @@
 package com.bocxy.crm.mapper;
 
+import com.bocxy.crm.createDTO.ContactCardCreateDto;
 import com.bocxy.crm.createDTO.TaskCreateDTO;
 import com.bocxy.crm.dto.TaskDTO;
 import com.bocxy.crm.entity.Task;
+import com.bocxy.crm.repository.ContactCardRepository;
 import com.bocxy.crm.updateDTO.TaskUpdateDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TaskMapper {
+    @Autowired
+    ContactCardRepository repo;
     public Task toEntity(TaskCreateDTO dto) {
+
         Task entity=new Task();
 
         entity.setBrandName(dto.getBrandName());
@@ -16,8 +22,6 @@ public class TaskMapper {
         entity.setAppointmentTime(dto.getAppointmentTime());
         entity.setAction(dto.getAction());
         entity.setComments(dto.getComments());
-        entity.setNextAppointmentDate(dto.getNextAppointmentDate());
-        entity.setNextAppointmentTime(dto.getNextAppointmentTime());
         entity.setLeadStatus(dto.getLeadStatus());
         entity.setTaskStatus(dto.getTaskStatus());
         return entity;
@@ -26,12 +30,10 @@ public class TaskMapper {
         Task entity=new Task();
         entity.setId(dto.getId());
         entity.setBrandName(dto.getBrandName());
-        entity.setAppointmentDate(dto.getAppointmentDate());
-        entity.setAppointmentTime(dto.getAppointmentTime());
+        entity.setAppointmentDate(dto.getNextAppointmentDate());
+        entity.setAppointmentTime(dto.getNextAppointmentTime());
         entity.setAction(dto.getAction());
         entity.setComments(dto.getComments());
-        entity.setNextAppointmentDate(dto.getNextAppointmentDate());
-        entity.setNextAppointmentTime(dto.getNextAppointmentTime());
         entity.setLeadStatus(dto.getLeadStatus());
         entity.setTaskStatus(dto.getTaskStatus());
         return entity;

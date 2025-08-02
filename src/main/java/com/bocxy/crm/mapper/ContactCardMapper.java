@@ -3,9 +3,13 @@ package com.bocxy.crm.mapper;
 import com.bocxy.crm.createDTO.ContactCardCreateDto;
 import com.bocxy.crm.dto.ContactCardDto;
 import com.bocxy.crm.entity.ContactCard;
+import com.bocxy.crm.entity.Task;
 import com.bocxy.crm.updateDTO.ContactCardUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ContactCardMapper {
@@ -32,7 +36,23 @@ public class ContactCardMapper {
         entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
         entity.setCreatedUser(dto.getCreatedUser());
-        entity.setTaskList(dto.getTaskCreateDTOList().stream().map(taskMapper::toEntity).toList());
+
+        Task task = new Task();
+        task.setBrandName(dto.getTaskCreateDTO().getBrandName());
+        task.setAppointmentDate(dto.getTaskCreateDTO().getAppointmentDate());
+        task.setAppointmentTime(dto.getTaskCreateDTO().getAppointmentTime());
+        task.setAction(dto.getTaskCreateDTO().getAction());
+        task.setComments(dto.getTaskCreateDTO().getComments());
+//        task.setNextAppointmentDate(dto.getTaskCreateDTO().getNextAppointmentDate());
+//        task.setNextAppointmentTime(dto.getTaskCreateDTO().getNextAppointmentTime());
+        task.setLeadStatus(dto.getTaskCreateDTO().getLeadStatus());
+        task.setTaskStatus(dto.getTaskCreateDTO().getTaskStatus());
+
+// Set single Task into list
+        List<Task> taskList = new ArrayList<>();
+        taskList.add(task);
+        entity.setTaskList(taskList);
+
         return entity;
     }
 
@@ -57,8 +77,23 @@ public class ContactCardMapper {
         entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
         entity.setCreatedUser(dto.getCreatedUser());
-        entity.setTaskList(dto.getTaskUpdateDTOList()
-                .stream().map(taskMapper::toEntity).toList());
+
+        Task task = new Task();
+
+        task.setBrandName(dto.getTaskUpdateDTO().getBrandName());
+        task.setAppointmentDate(dto.getTaskUpdateDTO().getAppointmentDate());
+        task.setAppointmentTime(dto.getTaskUpdateDTO().getAppointmentTime());
+        task.setAction(dto.getTaskUpdateDTO().getAction());
+        task.setComments(dto.getTaskUpdateDTO().getComments());
+//        task.setNextAppointmentDate(dto.getTaskCreateDTO().getNextAppointmentDate());
+//        task.setNextAppointmentTime(dto.getTaskCreateDTO().getNextAppointmentTime());
+        task.setLeadStatus(dto.getTaskUpdateDTO().getLeadStatus());
+        task.setTaskStatus(dto.getTaskUpdateDTO().getTaskStatus());
+
+        List<Task> taskList = new ArrayList<>();
+        taskList.add(task);
+        entity.setTaskList(taskList);
+
         return entity;
     }
 
