@@ -78,21 +78,7 @@ public class ContactCardMapper {
         entity.setFileUpload(dto.getFileUpload());
         entity.setCreatedUser(dto.getCreatedUser());
 
-        Task task = new Task();
-
-        task.setBrandName(dto.getTaskUpdateDTO().getBrandName());
-        task.setAppointmentDate(dto.getTaskUpdateDTO().getAppointmentDate());
-        task.setAppointmentTime(dto.getTaskUpdateDTO().getAppointmentTime());
-        task.setAction(dto.getTaskUpdateDTO().getAction());
-        task.setComments(dto.getTaskUpdateDTO().getComments());
-//        task.setNextAppointmentDate(dto.getTaskCreateDTO().getNextAppointmentDate());
-//        task.setNextAppointmentTime(dto.getTaskCreateDTO().getNextAppointmentTime());
-        task.setLeadStatus(dto.getTaskUpdateDTO().getLeadStatus());
-        task.setTaskStatus(dto.getTaskUpdateDTO().getTaskStatus());
-
-        List<Task> taskList = new ArrayList<>();
-        taskList.add(task);
-        entity.setTaskList(taskList);
+        entity.setTaskList(dto.getTaskDTOList().stream().map(taskMapper::toEntity).toList());
 
         return entity;
     }

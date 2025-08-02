@@ -30,8 +30,8 @@ public class TaskMapper {
         Task entity=new Task();
         entity.setId(dto.getId());
         entity.setBrandName(dto.getBrandName());
-        entity.setAppointmentDate(dto.getNextAppointmentDate());
-        entity.setAppointmentTime(dto.getNextAppointmentTime());
+        entity.setAppointmentDate(dto.getAppointmentDate());
+        entity.setAppointmentTime(dto.getAppointmentTime());
         entity.setAction(dto.getAction());
         entity.setComments(dto.getComments());
         entity.setLeadStatus(dto.getLeadStatus());

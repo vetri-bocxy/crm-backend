@@ -36,7 +36,7 @@ public class ContactCardUpdateDto {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate appointmentEndDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime appointmentTime;
 
     private String referralSource;
@@ -49,7 +49,7 @@ public class ContactCardUpdateDto {
     private String fileUpload;
     private String createdUser;
 
-    private TaskUpdateDTO taskUpdateDTO;
+    private List<TaskUpdateDTO> taskDTOList;
 
 //    @JsonFormat(pattern = "dd-MM-yyyy")
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")
