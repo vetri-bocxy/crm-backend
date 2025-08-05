@@ -39,6 +39,8 @@ public class ContactCardCreateDto {
 
     private String referralSource;
 
+    private String action;
+
     @Email
     private String email;
     private String address;
@@ -46,7 +48,5 @@ public class ContactCardCreateDto {
     private String pinCode;
     private String fileUpload;
     private String createdUser;
-
-    private TaskCreateDTO taskCreateDTO;
 
 }

@@ -36,22 +36,7 @@ public class ContactCardMapper {
         entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
         entity.setCreatedUser(dto.getCreatedUser());
-
-        Task task = new Task();
-        task.setBrandName(dto.getTaskCreateDTO().getBrandName());
-        task.setAppointmentDate(dto.getTaskCreateDTO().getAppointmentDate());
-        task.setAppointmentTime(dto.getTaskCreateDTO().getAppointmentTime());
-        task.setAction(dto.getTaskCreateDTO().getAction());
-        task.setComments(dto.getTaskCreateDTO().getComments());
-//        task.setNextAppointmentDate(dto.getTaskCreateDTO().getNextAppointmentDate());
-//        task.setNextAppointmentTime(dto.getTaskCreateDTO().getNextAppointmentTime());
-        task.setLeadStatus(dto.getTaskCreateDTO().getLeadStatus());
-        task.setTaskStatus(dto.getTaskCreateDTO().getTaskStatus());
-
-// Set single Task into list
-        List<Task> taskList = new ArrayList<>();
-        taskList.add(task);
-        entity.setTaskList(taskList);
+        entity.setAction(dto.getAction());
 
         return entity;
     }
@@ -77,9 +62,7 @@ public class ContactCardMapper {
         entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
         entity.setCreatedUser(dto.getCreatedUser());
-
-        entity.setTaskList(dto.getTaskDTOList().stream().map(taskMapper::toEntity).toList());
-
+        entity.setAction(dto.getAction());
         return entity;
     }
 
@@ -104,7 +87,7 @@ public class ContactCardMapper {
         dto.setPinCode(entity.getPinCode());
         dto.setFileUpload(entity.getFileUpload());
         dto.setCreatedUser(entity.getCreatedUser());
-        dto.setTaskDTOList(entity.getTaskList().stream().map(taskMapper::toDto).toList());
+        dto.setAction(entity.getAction());
         return dto;
     }
 }

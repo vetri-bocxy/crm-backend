@@ -19,6 +19,8 @@ public class TaskCreateDTO {
     private String leadStatus;
     private String taskStatus;
 
+    private UUID contactCardId;
+
 }
 
 

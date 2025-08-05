@@ -39,6 +39,7 @@ public class ContactCardDto {//response dto
 
 
     private String referralSource;
+    private String action;
 
     @Email
     private String email;
@@ -48,5 +49,5 @@ public class ContactCardDto {//response dto
     private String fileUpload;
     private String createdUser;
 
-    private List<TaskDTO> taskDTOList;
+
 }

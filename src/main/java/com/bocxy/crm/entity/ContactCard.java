@@ -45,6 +45,8 @@ public class ContactCard {
 
     private String referralSource;
 
+    private String action;
+
     @Email
     private String email;
     private String address;
@@ -53,9 +55,7 @@ public class ContactCard {
     private String fileUpload;
     private String createdUser;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "contact_card_id")
-    private List<Task> taskList = new ArrayList<>();
+
 
 
 

@@ -3,9 +3,11 @@ package com.bocxy.crm.mapper;
 import com.bocxy.crm.createDTO.ContactCardCreateDto;
 import com.bocxy.crm.createDTO.TaskCreateDTO;
 import com.bocxy.crm.dto.TaskDTO;
+import com.bocxy.crm.entity.ContactCard;
 import com.bocxy.crm.entity.Task;
 import com.bocxy.crm.repository.ContactCardRepository;
 import com.bocxy.crm.updateDTO.TaskUpdateDTO;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,8 @@ public class TaskMapper {
     ContactCardRepository repo;
     public Task toEntity(TaskCreateDTO dto) {
 
+        ContactCard contactCard=repo.findById(dto.getContactCardId())
+                .orElseThrow(()->new EntityNotFoundException("Contact card not there for the id"));
         Task entity=new Task();
 
         entity.setBrandName(dto.getBrandName());
@@ -24,9 +28,12 @@ public class TaskMapper {
         entity.setComments(dto.getComments());
         entity.setLeadStatus(dto.getLeadStatus());
         entity.setTaskStatus(dto.getTaskStatus());
+        entity.setContactCard(contactCard);
         return entity;
     }
     public Task toEntity(TaskUpdateDTO dto) {
+        ContactCard contactCard=repo.findById(dto.getContactCardId())
+                .orElseThrow(()->new EntityNotFoundException("Contact card not there for the id"));
         Task entity=new Task();
         entity.setId(dto.getId());
         entity.setBrandName(dto.getBrandName());
@@ -36,6 +43,7 @@ public class TaskMapper {
         entity.setComments(dto.getComments());
         entity.setLeadStatus(dto.getLeadStatus());
         entity.setTaskStatus(dto.getTaskStatus());
+        entity.setContactCard(contactCard);
         return entity;
     }
 
@@ -51,6 +59,7 @@ public class TaskMapper {
         dto.setNextAppointmentTime(entity.getNextAppointmentTime());
         dto.setLeadStatus(entity.getLeadStatus());
         dto.setTaskStatus(dto.getTaskStatus());
+        dto.setContactCardId(entity.getContactCard().getId());
         return dto;
     }
 

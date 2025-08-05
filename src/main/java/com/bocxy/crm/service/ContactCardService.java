@@ -13,9 +13,13 @@ import java.util.UUID;
 public class ContactCardService {
     @Autowired
     ContactCardRepository contactCardRepository;
+    @Autowired
+    TaskService taskService;
 
     public ContactCard createOrUpdate(ContactCard entity) {
-        return contactCardRepository.save(entity);
+        ContactCard contactCard= contactCardRepository.save(entity);
+        taskService.createWhileContactCard(contactCard);
+        return contactCard;
     }
 
     public List<ContactCard> getAll() {

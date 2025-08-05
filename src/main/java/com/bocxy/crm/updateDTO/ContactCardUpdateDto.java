@@ -40,6 +40,7 @@ public class ContactCardUpdateDto {
     private LocalTime appointmentTime;
 
     private String referralSource;
+    private String action;
 
     @Email
     private String email;
@@ -48,8 +49,6 @@ public class ContactCardUpdateDto {
     private String pinCode;
     private String fileUpload;
     private String createdUser;
-
-    private List<TaskUpdateDTO> taskDTOList;
 
 //    @JsonFormat(pattern = "dd-MM-yyyy")
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")
