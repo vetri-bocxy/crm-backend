@@ -36,7 +36,11 @@ public class TaskApiService {
     }
 
     public TaskDTO update(TaskUpdateDTO dto) {
-        return taskMapper.toDto(taskService.create(taskMapper.toEntity(dto)));
+        return taskMapper.toDto(taskService.update(taskMapper.toEntity(dto)));
 
+    }
+
+    public TaskDTO updateFollowUp(TaskUpdateDTO dto) {
+        return taskMapper.toDto(taskService.updateFollowUp(taskMapper.toEntity(dto)));
     }
 }

@@ -16,11 +16,16 @@ public class ContactCardService {
     @Autowired
     TaskService taskService;
 
-    public ContactCard createOrUpdate(ContactCard entity) {
+    public ContactCard create(ContactCard entity) {
         ContactCard contactCard= contactCardRepository.save(entity);
         taskService.createWhileContactCard(contactCard);
         return contactCard;
     }
+    public ContactCard update(ContactCard entity) {
+        ContactCard contactCard= contactCardRepository.save(entity);
+        taskService.updateWhileContactCard(contactCard);
+        return contactCard;    }
+
 
     public List<ContactCard> getAll() {
         return contactCardRepository.findAll();

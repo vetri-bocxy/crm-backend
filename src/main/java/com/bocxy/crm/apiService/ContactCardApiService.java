@@ -19,7 +19,7 @@ public class ContactCardApiService {
     ContactCardMapper contactCardMapper;
 
     public ContactCardDto create(ContactCardCreateDto createDto) {
-        return contactCardMapper.toDto(contactCardService.createOrUpdate(contactCardMapper.toEntity(createDto)));
+        return contactCardMapper.toDto(contactCardService.create(contactCardMapper.toEntity(createDto)));
     }
 
     public List<ContactCardDto> getAll() {
@@ -31,6 +31,6 @@ public class ContactCardApiService {
     }
 
     public ContactCardDto update(ContactCardUpdateDto dto) {
-        return contactCardMapper.toDto(contactCardService.createOrUpdate(contactCardMapper.toEntity(dto)));
+        return contactCardMapper.toDto(contactCardService.update(contactCardMapper.toEntity(dto)));
     }
 }

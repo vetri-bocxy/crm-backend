@@ -20,10 +20,8 @@ public class ContactCardCreateDto {
     private String businessType;
     private String pointOfContact;//primary contact
 
-    @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be 10 digits")
     private String primaryContactNumber;//primary contact number
 
-    @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be 10 digits")
     private String secondaryContactNumber;//secondary contact number
 
     private String leadStatus;

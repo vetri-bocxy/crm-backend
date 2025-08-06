@@ -27,7 +27,7 @@ public class TaskMapper {
         entity.setAction(dto.getAction());
         entity.setComments(dto.getComments());
         entity.setLeadStatus(dto.getLeadStatus());
-        entity.setTaskStatus(dto.getTaskStatus());
+        entity.setTaskStatus("open");
         entity.setContactCard(contactCard);
         return entity;
     }
@@ -41,6 +41,8 @@ public class TaskMapper {
         entity.setAppointmentTime(dto.getAppointmentTime());
         entity.setAction(dto.getAction());
         entity.setComments(dto.getComments());
+        entity.setNextAppointmentDate(dto.getNextAppointmentDate());
+        entity.setNextAppointmentTime(dto.getNextAppointmentTime());
         entity.setLeadStatus(dto.getLeadStatus());
         entity.setTaskStatus(dto.getTaskStatus());
         entity.setContactCard(contactCard);

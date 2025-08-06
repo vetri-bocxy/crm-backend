@@ -21,7 +21,6 @@ public class Task {
     @Column(name = "id",nullable = false,updatable = false,length = 36)
     private UUID id;
 
-    @Column(nullable = false,unique = true)
     private String brandName;
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;

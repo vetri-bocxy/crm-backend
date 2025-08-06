@@ -101,5 +101,25 @@ public class TaskController {
                     .body(new ResponseDto(500, "Internal Server Error: " + e.getMessage(), null));
         }
     }
+
+    @PostMapping("/updateFollowUp")
+    public ResponseEntity<ResponseDto> updateFollowUp(@RequestBody TaskUpdateDTO dto){
+        try{
+            TaskDTO data=taskApiService.updateFollowUp(dto);
+            return ResponseEntity.ok(new ResponseDto(200,"Retrieved Successfully",data));
+        }catch (IllegalArgumentException e) {
+            // Return 400 for bad request errors like invalid input
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ResponseDto(400, e.getMessage(), null));
+        } catch (EntityNotFoundException e) {
+            // Return 404 for not found errors
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ResponseDto(404, e.getMessage(), null));
+        } catch (Exception e) {
+            // Return 500 for generic internal server error
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto(500, "Internal Server Error: " + e.getMessage(), null));
+        }
+    }
 }
 
