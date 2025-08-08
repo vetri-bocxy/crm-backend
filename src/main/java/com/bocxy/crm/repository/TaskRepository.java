@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface TaskRepository extends JpaRepository<Task, UUID> {
     Optional<Task> findByContactCardId(UUID id);
 
+    Optional<Task> findByContactCardIdAndTaskStatus(UUID id, String open);
 }

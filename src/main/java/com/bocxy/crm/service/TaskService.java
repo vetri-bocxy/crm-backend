@@ -48,14 +48,10 @@ public class TaskService {
     }
 
     public void updateWhileContactCard(ContactCard card){
-        Task task=repository.findByContactCardId(card.getId())
+        Task task=repository.findByContactCardIdAndTaskStatus(card.getId(),"open")
                 .orElseThrow(()-> new EntityNotFoundException("Data Not Fount For This Id: "+ card.getId()));
 
         task.setBrandName(card.getBrandName());
-        task.setAppointmentDate(card.getAppointmentEndDate());
-        task.setAppointmentTime(card.getAppointmentTime());
-        task.setAction(card.getAction());
-        task.setLeadStatus(card.getLeadStatus());
         task.setContactCard(card);
 
         repository.save(task);
