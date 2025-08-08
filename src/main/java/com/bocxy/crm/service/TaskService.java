@@ -52,7 +52,7 @@ public class TaskService {
                 .orElseThrow(()-> new EntityNotFoundException("Data Not Fount For This Id: "+ card.getId()));
 
         task.setBrandName(card.getBrandName());
-        task.setAppointmentDate(card.getAppointmentStartDate());
+        task.setAppointmentDate(card.getAppointmentEndDate());
         task.setAppointmentTime(card.getAppointmentTime());
         task.setAction(card.getAction());
         task.setLeadStatus(card.getLeadStatus());
