@@ -41,6 +41,7 @@ public class TaskService {
         entity.setAppointmentTime(card.getAppointmentTime());
         entity.setAction(card.getAction());
         entity.setLeadStatus(card.getLeadStatus());
+        entity.setTaskStatus("open");
         entity.setContactCard(card);
 
         repository.save(entity);
@@ -77,6 +78,7 @@ public class TaskService {
         newTask.setAppointmentTime(entity.getNextAppointmentTime());
         newTask.setAction(entity.getAction());
         newTask.setLeadStatus(entity.getLeadStatus());
+        newTask.setTaskStatus("open");
         newTask.setContactCard(entity.getContactCard());
         Task newEntity=repository.save(newTask);
 
