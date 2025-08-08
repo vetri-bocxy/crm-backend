@@ -33,4 +33,8 @@ public class ContactCardApiService {
     public ContactCardDto update(ContactCardUpdateDto dto) {
         return contactCardMapper.toDto(contactCardService.update(contactCardMapper.toEntity(dto)));
     }
+
+    public List<String> getAllIdentityName() {
+        return contactCardService.getAllIdentityName();
+    }
 }

@@ -15,10 +15,13 @@ public class ContactCardService {
     ContactCardRepository contactCardRepository;
     @Autowired
     TaskService taskService;
+    @Autowired
+    TaskActivityService taskActivityService;
 
     public ContactCard create(ContactCard entity) {
         ContactCard contactCard= contactCardRepository.save(entity);
         taskService.createWhileContactCard(contactCard);
+        taskActivityService.createWhileContactCard(contactCard);
         return contactCard;
     }
     public ContactCard update(ContactCard entity) {
@@ -34,5 +37,9 @@ public class ContactCardService {
     public ContactCard getById(UUID id) {
         return contactCardRepository.findById(id)
                 .orElseThrow(()->new EntityNotFoundException("Data Not Fount For This Id: "+id));
+    }
+
+    public List<String> getAllIdentityName() {
+        return contactCardRepository.findAll().stream().map(ContactCard::getBrandName).toList();
     }
 }

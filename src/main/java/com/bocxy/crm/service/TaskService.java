@@ -2,16 +2,24 @@ package com.bocxy.crm.service;
 
 import com.bocxy.crm.entity.ContactCard;
 import com.bocxy.crm.entity.Task;
+import com.bocxy.crm.entity.TaskActivity;
+import com.bocxy.crm.repository.TaskActivityRepository;
 import com.bocxy.crm.repository.TaskRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class TaskService {
-    private final TaskRepository repository;
+    @Autowired
+    TaskRepository repository;
+    @Autowired
+    TaskActivityService activityService;
 
     public TaskService(TaskRepository repository) {
         this.repository = repository;
@@ -25,20 +33,20 @@ public class TaskService {
         return repository.save(toDTO);
     }
 
-    public Task createWhileContactCard(ContactCard card){
+    public void createWhileContactCard(ContactCard card){
         Task entity=new Task();
 
         entity.setBrandName(card.getBrandName());
-        entity.setAppointmentDate(card.getAppointmentStartDate());
+        entity.setAppointmentDate(card.getAppointmentEndDate());
         entity.setAppointmentTime(card.getAppointmentTime());
         entity.setAction(card.getAction());
         entity.setLeadStatus(card.getLeadStatus());
         entity.setContactCard(card);
 
-        return repository.save(entity);
+        repository.save(entity);
     }
 
-    public Task updateWhileContactCard(ContactCard card){
+    public void updateWhileContactCard(ContactCard card){
         Task task=repository.findByContactCardId(card.getId())
                 .orElseThrow(()-> new EntityNotFoundException("Data Not Fount For This Id: "+ card.getId()));
 
@@ -49,7 +57,7 @@ public class TaskService {
         task.setLeadStatus(card.getLeadStatus());
         task.setContactCard(card);
 
-        return repository.save(task);
+        repository.save(task);
     }
 
     public List<Task> getAll() {
@@ -62,7 +70,7 @@ public class TaskService {
     }
 
     public Task updateFollowUp(Task entity) {
-        //new followup task
+        //create new followup task
         Task newTask=new Task();
         newTask.setBrandName(entity.getBrandName());
         newTask.setAppointmentDate(entity.getNextAppointmentDate());
@@ -72,9 +80,14 @@ public class TaskService {
         newTask.setContactCard(entity.getContactCard());
         Task newEntity=repository.save(newTask);
 
+        //create new Task-activity
+        activityService.createWhileTask(entity);
+
         //close previous task
         entity.setTaskStatus("close");
         repository.save(entity);
+
+
         return newEntity;
     }
 }

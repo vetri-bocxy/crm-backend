@@ -60,7 +60,7 @@ public class TaskMapper {
         dto.setNextAppointmentDate(entity.getNextAppointmentDate());
         dto.setNextAppointmentTime(entity.getNextAppointmentTime());
         dto.setLeadStatus(entity.getLeadStatus());
-        dto.setTaskStatus(dto.getTaskStatus());
+        dto.setTaskStatus(entity.getTaskStatus());
         dto.setContactCardId(entity.getContactCard().getId());
         return dto;
     }
