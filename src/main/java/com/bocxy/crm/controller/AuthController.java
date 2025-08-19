@@ -38,7 +38,7 @@ public class AuthController {
                     String token = jwtUtils.generateToken(user);
                     return ResponseEntity.ok(new AuthResponse(token, user.getRole().name(),user));
                 } else {
-                    return ResponseEntity.status(401).body(new AuthResponse("Invalid password", null,user));
+                    return ResponseEntity.status(401).body(new AuthResponse("Invalid password", null,null));
                 }
             } else {
                 throw new EntityNotFoundException("User not found with username: " + authRequest.getUsername());
