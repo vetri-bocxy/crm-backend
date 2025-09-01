@@ -53,6 +53,8 @@ public class TaskService {
 
         task.setBrandName(card.getBrandName());
         task.setContactCard(card);
+        task.setAppointmentDate(card.getAppointmentEndDate());
+        task.setAppointmentTime(card.getAppointmentTime());
 
         repository.save(task);
     }

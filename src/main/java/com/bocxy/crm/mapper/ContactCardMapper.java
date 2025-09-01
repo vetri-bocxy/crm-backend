@@ -36,6 +36,7 @@ public class ContactCardMapper {
         entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
         entity.setCreatedUser(dto.getCreatedUser());
+        entity.setAssignedTo(dto.getAssignedTo());
         entity.setAction(dto.getAction());
 
         return entity;
@@ -62,6 +63,7 @@ public class ContactCardMapper {
         entity.setPinCode(dto.getPinCode());
         entity.setFileUpload(dto.getFileUpload());
         entity.setCreatedUser(dto.getCreatedUser());
+        entity.setAssignedTo(dto.getAssignedTo());
         entity.setAction(dto.getAction());
         return entity;
     }
@@ -87,6 +89,7 @@ public class ContactCardMapper {
         dto.setPinCode(entity.getPinCode());
         dto.setFileUpload(entity.getFileUpload());
         dto.setCreatedUser(entity.getCreatedUser());
+        dto.setAssignedTo(entity.getAssignedTo());
         dto.setAction(entity.getAction());
         return dto;
     }

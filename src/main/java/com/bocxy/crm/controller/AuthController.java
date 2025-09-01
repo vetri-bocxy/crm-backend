@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -36,21 +37,21 @@ public class AuthController {
                 User user = userOpt.get();
                 if (passwordEncoder.matches(authRequest.getPassword(), user.getPassword())) {
                     String token = jwtUtils.generateToken(user);
-                    return ResponseEntity.ok(new AuthResponse(token, user.getRole().name(),user));
+                    return ResponseEntity.ok(new AuthResponse(token,user));
                 } else {
-                    return ResponseEntity.status(401).body(new AuthResponse("Invalid password", null,null));
+                    return ResponseEntity.status(401).body(new AuthResponse("Invalid password",null));
                 }
             } else {
                 throw new EntityNotFoundException("User not found with username: " + authRequest.getUsername());
             }
         } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(404).body(new AuthResponse(e.getMessage(), null,null));
+            return ResponseEntity.status(404).body(new AuthResponse(e.getMessage(),null));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new AuthResponse("Bad request: " + e.getMessage(), null,null));
+            return ResponseEntity.badRequest().body(new AuthResponse("Bad request: " + e.getMessage(),null));
         } catch (RuntimeException e) {
-            return ResponseEntity.status(500).body(new AuthResponse("Runtime error: " + e.getMessage(), null,null));
+            return ResponseEntity.status(500).body(new AuthResponse("Runtime error: " + e.getMessage(),null));
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(new AuthResponse("Unexpected error: " + e.getMessage(), null,null));
+            return ResponseEntity.status(500).body(new AuthResponse("Unexpected error: " + e.getMessage(), null));
         }
     }
 
@@ -80,6 +81,27 @@ public class AuthController {
             User savedUser = userService.registerUser(dto);
 
             return ResponseEntity.ok(new ResponseDto(200,"User Registered Successfully",savedUser));
+        } catch (IllegalArgumentException e) {
+            // Return 400 for bad request errors like invalid input
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ResponseDto(400, e.getMessage(), null));
+        } catch (EntityNotFoundException e) {
+            // Return 404 for not found errors
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ResponseDto(404, e.getMessage(), null));
+        } catch (Exception e) {
+            // Return 500 for generic internal server error
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto(500, "Internal Server Error: " + e.getMessage(), null));
+        }
+    }
+
+    @GetMapping("/getUsernames")
+    public ResponseEntity<ResponseDto> getUsernames() {
+        try {
+            List<String> usernames= userService.getUsernames();
+
+            return ResponseEntity.ok(new ResponseDto(200,"User Registered Successfully",usernames));
         } catch (IllegalArgumentException e) {
             // Return 400 for bad request errors like invalid input
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

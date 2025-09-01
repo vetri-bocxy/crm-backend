@@ -49,6 +49,7 @@ public class ContactCardUpdateDto {
     private String pinCode;
     private String fileUpload;
     private String createdUser;
+    private String assignedTo;
 
 //    @JsonFormat(pattern = "dd-MM-yyyy")
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")

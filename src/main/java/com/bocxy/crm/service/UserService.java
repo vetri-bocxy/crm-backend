@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -35,5 +37,9 @@ public class UserService {
         User user=userRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(()-> new EntityNotFoundException("User not matched with the number "+phoneNumber));
         return user.getUsername();
+    }
+
+    public List<String> getUsernames() {
+        return userRepository.findUsernames();
     }
 }

@@ -46,5 +46,6 @@ public class ContactCardCreateDto {
     private String pinCode;
     private String fileUpload;
     private String createdUser;
+    private String assignedTo;
 
 }
