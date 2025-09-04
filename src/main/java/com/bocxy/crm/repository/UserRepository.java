@@ -1,6 +1,5 @@
 package com.bocxy.crm.repository;
 
-import com.bocxy.crm.entity.Role;
 import com.bocxy.crm.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -36,5 +37,9 @@ public class ContactCardApiService {
 
     public List<String> getAllIdentityName() {
         return contactCardService.getAllIdentityName();
+    }
+
+    public Map<String, Integer> getContactCardCountLeadStatusWise() {
+        return contactCardService.getContactCardCountLeadStatusWise();
     }
 }

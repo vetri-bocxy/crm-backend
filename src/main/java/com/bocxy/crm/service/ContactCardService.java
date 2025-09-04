@@ -6,8 +6,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class ContactCardService {
@@ -41,5 +40,32 @@ public class ContactCardService {
 
     public List<String> getAllIdentityName() {
         return contactCardRepository.findAll().stream().map(ContactCard::getBrandName).toList();
+    }
+
+    public Map<String, Integer> getContactCardCountLeadStatusWise() {
+        Map<String,Integer> data=new LinkedHashMap<>();
+
+        List<Object[]> results=contactCardRepository.getContactCardCounts();
+        for(Object[] row:results){
+            String key=row[0].toString();
+            int value=((Number) row[1]).intValue();
+
+            switch (key){
+                case "Follow Up" -> data.put("followUp",value);
+                case "In-line" -> data.put("inLine",value);
+                case "Prospect"-> data.put("prospect",value);
+                case "Converted"-> data.put("converted",value);
+                case "Not Interested"-> data.put("notInterested",value);
+                case "overAllContactCard"-> data.put("overAllContactCard",value);
+                default -> data.put(key,value);
+            }
+        }
+//        data.put("overallContactCard",contactCardRepository.findAllContactCardCount());
+//        data.put("followUp",contactCardRepository.findContactCardByLeadStatus("Follow Up"));
+//        data.put("inLine",contactCardRepository.findContactCardByLeadStatus("In-line"));
+//        data.put("prospect",contactCardRepository.findContactCardByLeadStatus("Prospect"));
+//        data.put("converted",contactCardRepository.findContactCardByLeadStatus("Converted"));
+//        data.put("notInterested",contactCardRepository.findContactCardByLeadStatus("Not Interested"));
+        return data;
     }
 }
