@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface TaskActivityRepository extends JpaRepository<TaskActivity, Id> {
     @Query(value = """
             UPDATE task_activity 
-            SET brand_name=:brandName
+            SET brand_name=:brandName 
             WHERE contact_card_id=:contactCardId
             """,nativeQuery = true)
     void updateBrandName(String brandName, UUID contactCardId);

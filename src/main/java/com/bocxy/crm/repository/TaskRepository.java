@@ -17,7 +17,7 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
 
     @Query(value = """
             UPDATE tasks 
-            SET brand_name=:brandName
+            SET brand_name=:brandName 
             WHERE contact_card_id=:contactCardId
             """,nativeQuery = true)
     void updateBrandName(String brandName, UUID contactCardId);
