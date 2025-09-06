@@ -16,14 +16,17 @@ public class TaskActivityService {
     @Autowired
     TaskActivityRepository repo;
     public void createWhileContactCard(ContactCard contactCard) {
-        TaskActivity newEntity=new TaskActivity();
-        newEntity.setBrandName(contactCard.getBrandName());
-        newEntity.setDate(LocalDate.now());
-        newEntity.setTime(LocalTime.now());
-        newEntity.setLeadStatus(contactCard.getLeadStatus());
-        newEntity.setComments("Contact Created");
-        newEntity.setContactCard(contactCard);
-        repo.save(newEntity);
+        TaskActivity entity=new TaskActivity();
+        entity.setBrandName(contactCard.getBrandName());
+        entity.setDate(LocalDate.now());
+        entity.setTime(LocalTime.now());
+        entity.setLeadStatus(contactCard.getLeadStatus());
+        entity.setComments("Contact Created");
+        entity.setContactCard(contactCard);
+        entity.setCreatedUser(contactCard.getCreatedUser());
+        entity.setAssignedTo(contactCard.getAssignedTo());
+        entity.setDoneBy(contactCard.getCreatedUser());
+        repo.save(entity);
     }
 
     public void createWhileTask(Task task) {
@@ -33,6 +36,9 @@ public class TaskActivityService {
         newEntity.setTime(LocalTime.now());
         newEntity.setLeadStatus(task.getLeadStatus());
         newEntity.setComments(task.getComments());
+        newEntity.setCreatedUser(task.getCreatedUser());
+        newEntity.setAssignedTo(task.getAssignedTo());
+        newEntity.setDoneBy(task.getDoneBy());
         newEntity.setContactCard(task.getContactCard());
         repo.save(newEntity);
     }
@@ -40,5 +46,9 @@ public class TaskActivityService {
 
     public List<TaskActivity> getAll() {
         return repo.findAll();
+    }
+
+    public void updateWhileContactCard(ContactCard contactCard) {
+        repo.updateBrandName(contactCard.getBrandName(),contactCard.getId());
     }
 }

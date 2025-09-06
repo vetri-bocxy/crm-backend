@@ -14,6 +14,9 @@ public class TaskActivityMapper {
         dto.setTime(entity.getTime());
         dto.setLeadStatus(entity.getLeadStatus());
         dto.setComments(entity.getComments());
+        dto.setCreatedUser(entity.getCreatedUser());
+        dto.setAssignedTo(entity.getAssignedTo());
+        dto.setDoneBy(entity.getDoneBy());
         dto.setContactCardId(entity.getContactCard().getId());
         return dto;
     }

@@ -42,21 +42,30 @@ public class TaskService {
         entity.setAction(card.getAction());
         entity.setLeadStatus(card.getLeadStatus());
         entity.setTaskStatus("open");
+        entity.setCreatedUser(card.getCreatedUser());
+        entity.setAssignedTo(card.getAssignedTo());
         entity.setContactCard(card);
 
         repository.save(entity);
     }
 
     public void updateWhileContactCard(ContactCard card){
-        Task task=repository.findByContactCardIdAndTaskStatus(card.getId(),"open")
+        repository.updateBrandName(card.getBrandName(),card.getId());
+        Task entity=repository.findByContactCardIdAndTaskStatus(card.getId(),"open")
                 .orElseThrow(()-> new EntityNotFoundException("Data Not Fount For This Id: "+ card.getId()));
 
-        task.setBrandName(card.getBrandName());
-        task.setContactCard(card);
-        task.setAppointmentDate(card.getAppointmentEndDate());
-        task.setAppointmentTime(card.getAppointmentTime());
 
-        repository.save(task);
+        entity.setBrandName(card.getBrandName());
+        entity.setAppointmentDate(card.getAppointmentEndDate());
+        entity.setAppointmentTime(card.getAppointmentTime());
+        entity.setAction(card.getAction());
+        entity.setLeadStatus(card.getLeadStatus());
+        entity.setTaskStatus("open");
+        entity.setCreatedUser(card.getCreatedUser());
+        entity.setAssignedTo(card.getAssignedTo());
+        entity.setContactCard(card);
+
+        repository.save(entity);
     }
 
     public List<Task> getAll() {
@@ -78,9 +87,11 @@ public class TaskService {
         newTask.setLeadStatus(entity.getLeadStatus());
         newTask.setTaskStatus("open");
         newTask.setContactCard(entity.getContactCard());
+        newTask.setCreatedUser(entity.getCreatedUser());
+        newTask.setAssignedTo(entity.getAssignedTo());
         Task newEntity=repository.save(newTask);
 
-        //create new Task-activity
+        //create new Task-activity for currently closing task
         activityService.createWhileTask(entity);
 
         //close previous task

@@ -23,6 +23,9 @@ public class TaskUpdateDTO {
     private LocalTime nextAppointmentTime;
     private String leadStatus;
     private String taskStatus;
+    private String createdUser;
+    private String assignedTo;
+    private String doneBy;
 
     private UUID contactCardId;
 }

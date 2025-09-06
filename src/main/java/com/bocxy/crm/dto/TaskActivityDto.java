@@ -17,5 +17,8 @@ public class TaskActivityDto {
     private LocalTime time;
     private String leadStatus;
     private String comments;
+    private String createdUser;
+    private String assignedTo;
+    private String doneBy;
     private UUID contactCardId;
 }

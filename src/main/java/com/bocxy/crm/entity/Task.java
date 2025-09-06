@@ -30,6 +30,9 @@ public class Task {
     private LocalTime nextAppointmentTime;
     private String leadStatus;
     private String taskStatus;
+    private String createdUser;
+    private String assignedTo;
+    private String doneBy;
 
     @ManyToOne
     @JoinColumn(name = "contact_card_id") // Optional: explicitly set column name

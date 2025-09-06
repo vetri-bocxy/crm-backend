@@ -19,6 +19,9 @@ public class TaskActivity extends AbstractEntity{
     private LocalTime time;
     private String leadStatus;
     private String comments;
+    private String createdUser;
+    private String assignedTo;
+    private String doneBy;
 
     @ManyToOne
     @JoinColumn(name = "contact_card_id") // Optional: explicitly set column name

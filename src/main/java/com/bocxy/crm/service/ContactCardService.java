@@ -26,6 +26,7 @@ public class ContactCardService {
     public ContactCard update(ContactCard entity) {
         ContactCard contactCard= contactCardRepository.save(entity);
         taskService.updateWhileContactCard(contactCard);
+        taskActivityService.updateWhileContactCard(contactCard);
         return contactCard;    }
 
 
