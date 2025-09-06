@@ -7,6 +7,7 @@ import com.bocxy.crm.service.ContactCardService;
 import com.bocxy.crm.updateDTO.ContactCardUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class ContactCardApiService {
     @Autowired
     ContactCardMapper contactCardMapper;
 
+    @Transactional
     public ContactCardDto create(ContactCardCreateDto createDto) {
         return contactCardMapper.toDto(contactCardService.create(contactCardMapper.toEntity(createDto)));
     }
@@ -31,6 +33,7 @@ public class ContactCardApiService {
         return contactCardMapper.toDto(contactCardService.getById(id));
     }
 
+    @Transactional
     public ContactCardDto update(ContactCardUpdateDto dto) {
         return contactCardMapper.toDto(contactCardService.update(contactCardMapper.toEntity(dto)));
     }

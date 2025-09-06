@@ -8,6 +8,7 @@ import com.bocxy.crm.repository.TaskRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -33,6 +34,7 @@ public class TaskService {
         return repository.save(toDTO);
     }
 
+    @Transactional
     public void createWhileContactCard(ContactCard card){
         Task entity=new Task();
 
@@ -49,6 +51,7 @@ public class TaskService {
         repository.save(entity);
     }
 
+    @Transactional
     public void updateWhileContactCard(ContactCard card){
         repository.updateBrandName(card.getBrandName(),card.getId());
         Task entity=repository.findByContactCardIdAndTaskStatus(card.getId(),"open")

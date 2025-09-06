@@ -5,6 +5,7 @@ import com.bocxy.crm.repository.ContactCardRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -17,12 +18,14 @@ public class ContactCardService {
     @Autowired
     TaskActivityService taskActivityService;
 
+    @Transactional
     public ContactCard create(ContactCard entity) {
         ContactCard contactCard= contactCardRepository.save(entity);
         taskService.createWhileContactCard(contactCard);
         taskActivityService.createWhileContactCard(contactCard);
         return contactCard;
     }
+    @Transactional
     public ContactCard update(ContactCard entity) {
         ContactCard contactCard= contactCardRepository.save(entity);
         taskService.updateWhileContactCard(contactCard);

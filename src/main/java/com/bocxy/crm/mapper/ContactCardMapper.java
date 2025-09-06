@@ -4,6 +4,7 @@ import com.bocxy.crm.createDTO.ContactCardCreateDto;
 import com.bocxy.crm.dto.ContactCardDto;
 import com.bocxy.crm.entity.ContactCard;
 import com.bocxy.crm.entity.Task;
+import com.bocxy.crm.repository.ContactCardRepository;
 import com.bocxy.crm.updateDTO.ContactCardUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,8 @@ import java.util.List;
 public class ContactCardMapper {
     @Autowired
     TaskMapper taskMapper;
+    @Autowired
+    ContactCardRepository contactCardRepository;
 
     public ContactCard toEntity(ContactCardCreateDto dto) {
         ContactCard entity=new ContactCard();
@@ -43,7 +46,7 @@ public class ContactCardMapper {
     }
 
     public ContactCard toEntity(ContactCardUpdateDto dto) {
-        ContactCard entity=new ContactCard();
+        ContactCard entity=contactCardRepository.findById(dto.getId()).orElseThrow(()->new RuntimeException("card not found for this id "+dto.getId()));
         entity.setId(dto.getId());
         entity.setBrandName(dto.getBrandName());
         entity.setOwnerName(dto.getOwnerName());

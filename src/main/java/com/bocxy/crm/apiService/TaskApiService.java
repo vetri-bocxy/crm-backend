@@ -7,6 +7,7 @@ import com.bocxy.crm.mapper.TaskMapper;
 import com.bocxy.crm.service.TaskService;
 import com.bocxy.crm.updateDTO.TaskUpdateDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +22,7 @@ public class TaskApiService {
         this.taskMapper = taskMapper;
     }
 
+    @Transactional
     public TaskDTO create(TaskCreateDTO createDto) {
        return taskMapper.toDto(taskService.create(taskMapper.toEntity(createDto)));
     }
@@ -35,11 +37,13 @@ public class TaskApiService {
 
     }
 
+    @Transactional
     public TaskDTO update(TaskUpdateDTO dto) {
         return taskMapper.toDto(taskService.update(taskMapper.toEntity(dto)));
 
     }
 
+    @Transactional
     public TaskDTO updateFollowUp(TaskUpdateDTO dto) {
         return taskMapper.toDto(taskService.updateFollowUp(taskMapper.toEntity(dto)));
     }

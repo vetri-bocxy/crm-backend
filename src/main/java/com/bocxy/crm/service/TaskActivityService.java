@@ -6,6 +6,7 @@ import com.bocxy.crm.entity.TaskActivity;
 import com.bocxy.crm.repository.TaskActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,6 +16,8 @@ import java.util.List;
 public class TaskActivityService {
     @Autowired
     TaskActivityRepository repo;
+
+    @Transactional
     public void createWhileContactCard(ContactCard contactCard) {
         TaskActivity entity=new TaskActivity();
         entity.setBrandName(contactCard.getBrandName());
@@ -29,6 +32,7 @@ public class TaskActivityService {
         repo.save(entity);
     }
 
+    @Transactional
     public void createWhileTask(Task task) {
         TaskActivity newEntity=new TaskActivity();
         newEntity.setBrandName(task.getBrandName());
@@ -48,6 +52,7 @@ public class TaskActivityService {
         return repo.findAll();
     }
 
+    @Transactional
     public void updateWhileContactCard(ContactCard contactCard) {
         repo.updateBrandName(contactCard.getBrandName(),contactCard.getId());
     }
