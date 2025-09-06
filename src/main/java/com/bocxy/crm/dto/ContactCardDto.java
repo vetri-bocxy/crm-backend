@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,5 +51,7 @@ public class ContactCardDto {//response dto
     private String createdUser;
     private String assignedTo;
 
+    private ZonedDateTime createdAt;
+    private ZonedDateTime updatedAt;
 
 }

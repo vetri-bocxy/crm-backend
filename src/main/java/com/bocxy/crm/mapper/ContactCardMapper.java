@@ -91,6 +91,8 @@ public class ContactCardMapper {
         dto.setCreatedUser(entity.getCreatedUser());
         dto.setAssignedTo(entity.getAssignedTo());
         dto.setAction(entity.getAction());
+        dto.setCreatedAt(entity.getCreatedAtIST());
+        dto.setUpdatedAt(entity.getUpdatedAtIST());
         return dto;
     }
 }

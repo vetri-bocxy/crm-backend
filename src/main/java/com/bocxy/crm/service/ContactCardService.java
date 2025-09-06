@@ -42,7 +42,7 @@ public class ContactCardService {
         return contactCardRepository.findAll().stream().map(ContactCard::getBrandName).toList();
     }
 
-    public Map<String, Integer> getContactCardCountLeadStatusWise() {
+    public Map<String, Integer> getCountLeadStatusWise() {
         Map<String,Integer> data=new LinkedHashMap<>();
 
         List<Object[]> results=contactCardRepository.getContactCardCounts();
@@ -68,4 +68,29 @@ public class ContactCardService {
 //        data.put("notInterested",contactCardRepository.findContactCardByLeadStatus("Not Interested"));
         return data;
     }
+
+    public Map<String, Map<String, Integer>> getCountLeadStatusMonthWise() {
+        Map<String, Map<String, Integer>> data = new LinkedHashMap<>();
+
+        List<Object[]> results = contactCardRepository.getCountLeadStatusMonthWise();
+        for (Object[] row : results) {
+            String month = row[0].toString();          // e.g., "2025-01"
+            String status = row[1].toString();         // e.g., "Follow Up"
+            int count = ((Number) row[2]).intValue();  // e.g., 10
+
+            data.putIfAbsent(month, new LinkedHashMap<>());
+
+            switch (status) {
+                case "Follow Up" -> data.get(month).put("followUp", count);
+                case "In-line"   -> data.get(month).put("inLine", count);
+                case "Prospect"  -> data.get(month).put("prospect", count);
+                case "Converted" -> data.get(month).put("converted", count);
+                case "Not Interested" -> data.get(month).put("notInterested", count);
+                default -> data.get(month).put(status, count);
+            }
+        }
+
+        return data;
+    }
+
 }

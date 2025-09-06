@@ -122,10 +122,10 @@ public class ContactCardController {
         }
     }
 
-    @GetMapping("/getContactCardCountLeadStatusWise")
+    @GetMapping("/getCountLeadStatusWise")
     public ResponseEntity<ResponseDto> getContactCardCountLeadStatusWise() {
         try {
-            Map<String, Integer> data = contactCardApiService.getContactCardCountLeadStatusWise();
+            Map<String, Integer> data = contactCardApiService.getCountLeadStatusWise();
             return ResponseEntity.ok(new ResponseDto(200, "Retrieved Successfully", data));
         } catch (IllegalArgumentException e) {
             // Return 400 for bad request errors like invalid input
@@ -141,6 +141,25 @@ public class ContactCardController {
                     .body(new ResponseDto(500, "Internal Server Error: " + e.getMessage(), null));
         }
     }
+
+    @GetMapping("/getCountLeadStatusMonthWise")
+    public ResponseEntity<ResponseDto> getMonthlyLeadStatusCounts() {
+        try {
+            Map<String,Map<String, Integer>> data = contactCardApiService.getCountLeadStatusMonthWise();
+
+            return ResponseEntity.ok(new ResponseDto(200, "Retrieved Successfully", data));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest()
+                    .body(new ResponseDto(400, e.getMessage(), null));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ResponseDto(404, e.getMessage(), null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto(500, "Internal Server Error", null));
+        }
+    }
+
 
 
 }

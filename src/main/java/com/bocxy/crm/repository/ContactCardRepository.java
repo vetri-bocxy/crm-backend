@@ -17,4 +17,15 @@ public interface ContactCardRepository extends JpaRepository<ContactCard, UUID> 
             GROUP BY lead_status
             """,nativeQuery = true)
     List<Object[]> getContactCardCounts();
+
+    @Query(value = """
+    SELECT DATE_FORMAT(created_at, '%Y-%m') AS month, 
+    lead_status AS status, 
+    COUNT(*) AS count
+    FROM contact_cards
+    GROUP BY DATE_FORMAT(created_at, '%Y-%m'), lead_status
+    ORDER BY month ASC
+    """, nativeQuery = true)
+    List<Object[]> getCountLeadStatusMonthWise();
+
 }

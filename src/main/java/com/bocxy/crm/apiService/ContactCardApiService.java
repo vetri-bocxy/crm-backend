@@ -39,7 +39,11 @@ public class ContactCardApiService {
         return contactCardService.getAllIdentityName();
     }
 
-    public Map<String, Integer> getContactCardCountLeadStatusWise() {
-        return contactCardService.getContactCardCountLeadStatusWise();
+    public Map<String, Integer> getCountLeadStatusWise() {
+        return contactCardService.getCountLeadStatusWise();
+    }
+
+    public Map<String, Map<String, Integer>> getCountLeadStatusMonthWise() {
+        return contactCardService.getCountLeadStatusMonthWise();
     }
 }
